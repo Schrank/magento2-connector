@@ -21,7 +21,7 @@ class ProductListXmlExporter
     public function exportProductXml(StoreInterface $store, string $locale = 'en_US')
     {
         $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
-        $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'lizardsandpumpkins']);
+        $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'export', 'lizardsandpumpkins']);
         $writer = $this->writeFactory->create($exportDir);
         $page = 1;
 
