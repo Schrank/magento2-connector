@@ -42,7 +42,7 @@ class ProductListXmlGenerator
     ): CatalogMerge {
         $productCollection = $this->productCollector->getCollection($store, $pageSize, $currentPage);
 
-        if ($productCollection->count() === 0) {
+        if ((int)$productCollection->count() === 0) {
             return null;
         }
 

@@ -15,10 +15,6 @@ class ProductCollector
      * @var CollectionFactory
      */
     private $collectionFactory;
-    /**
-     * @var Collection[]
-     */
-    private $cachedCollections = [];
 
     public function __construct(CollectionFactory $collectionFactory)
     {
@@ -26,15 +22,6 @@ class ProductCollector
     }
 
     public function getCollection(StoreInterface $store, int $pageSize = 100, int $currentPage = 1) : Collection
-    {
-        if (false === array_key_exists($store->getId(), $this->cachedCollections)) {
-            $this->cachedCollections[$store->getId()] = $this->createCollection($store, $pageSize, $currentPage);
-        }
-
-        return $this->cachedCollections[$store->getId()];
-    }
-
-    private function createCollection(StoreInterface $store, int $pageSize = 100, int $currentPage = 1): Collection
     {
         $collection = $this->collectionFactory->create();
 
