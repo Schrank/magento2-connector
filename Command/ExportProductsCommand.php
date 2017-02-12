@@ -2,29 +2,15 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Command;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductListXmlGenerator;
-use Magento\Framework\App\Filesystem\DirectoryList;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter;
 use Magento\Framework\App\State;
 use Magento\Store\Api\StoreRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Magento\Framework\Filesystem\Directory\WriteFactory;
 
 class ExportProductsCommand extends Command
 {
-    /**
-     * @var WriteFactory
-     */
-    private $writeFactory;
-    /**
-     * @var DirectoryList
-     */
-    private $directoryList;
-    /**
-     * @var ProductListXmlGenerator
-     */
-    private $productListXmlGenerator;
     /**
      * @var StoreRepositoryInterface
      */
@@ -33,21 +19,19 @@ class ExportProductsCommand extends Command
      * @var State
      */
     private $appState;
+    /**
+     * @var ProductListXmlExporter
+     */
+    private $productListXmlExporter;
 
     public function __construct(
-        WriteFactory $writeFactory,
-        DirectoryList $directoryList,
-        ProductListXmlGenerator $productListXmlGenerator,
-        StoreRepositoryInterface $storeRepository,
+        ProductListXmlExporter $productListXmlExporter,
         State $appState,
         $name = null
     ) {
         parent::__construct($name);
-        $this->writeFactory = $writeFactory;
-        $this->directoryList = $directoryList;
-        $this->productListXmlGenerator = $productListXmlGenerator;
-        $this->storeRepository = $storeRepository;
         $this->appState = $appState;
+        $this->productListXmlExporter = $productListXmlExporter;
     }
 
     protected function configure()
@@ -61,15 +45,8 @@ class ExportProductsCommand extends Command
     {
         $this->appState->setAreaCode('frontend');
 
+        /** @todo: get storeId and locale from input arguments */
         $store = $this->storeRepository->getById(0);
-        $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
-        $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'lizardsandpumpkins']);
-        $writer = $this->writeFactory->create($exportDir);
-        $page = 1;
-
-        do {
-            $catalogMerger = $this->productListXmlGenerator->generateXml($store, 'de_DE', 1000, $page++);
-            $writer->writeFile('products.xml', $catalogMerger->getPartialXmlString(), 'a+');
-        } while (null !== $catalogMerger);
+        $this->productListXmlExporter->exportProductXml($store, 'en_US');
     }
 }
