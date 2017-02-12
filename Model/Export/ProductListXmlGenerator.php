@@ -27,8 +27,8 @@ class ProductListXmlGenerator
      * @return CatalogMerge
      */
     public function generateXml(array $products, string $locale = 'en_US'): CatalogMerge {
-        return array_reduce($products, function (CatalogMerge $catalogMerger, ProductInterface $product) use ($locale) {
-            $context = new ExportContext($locale);
+        $context = new ExportContext($locale);
+        return array_reduce($products, function (CatalogMerge $catalogMerger, ProductInterface $product) use ($context) {
             $productXmlString = $this->productXmlGenerator->productToXmlString($product, $context);
             $catalogMerger->addProduct($productXmlString);
             return $catalogMerger;
