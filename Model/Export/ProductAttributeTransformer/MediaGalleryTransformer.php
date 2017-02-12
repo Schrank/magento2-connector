@@ -59,12 +59,12 @@ class MediaGalleryTransformer implements AttributeTransformerInterface
      */
     private function prepareImagesData(
         array $mediaGalleryData,
-        ProductAttributeMediaGalleryEntryInterface $mainProductImage
+        $mainProductImage
     ): array {
         return array_map(function ($image) use ($mainProductImage) {
             /** @var ProductAttributeMediaGalleryEntryInterface $image */
             return [
-                'main'  => $image->getFile() === $mainProductImage->getFile(),
+                'main'  => ($mainProductImage !== null) && $image->getFile() === $mainProductImage->getFile(),
                 'label' => $image->getLabel(),
                 'file'  => basename($image->getFile()),
             ];
