@@ -2,36 +2,31 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductEnricher;
 
-use Magento\Tax\Api\Data\TaxClassKeyInterface;
-use Magento\Tax\Api\Data\TaxClassKeyInterfaceFactory;
-use Magento\Tax\Api\TaxClassManagementInterface;
+use Magento\Tax\Api\TaxClassRepositoryInterface;
 
 class TaxClassEnricher implements ProductEnricherInterface
 {
-    /**
-     * @var TaxClassManagementInterface
-     */
-    private $taxClassManagement;
-    /**
-     * @var TaxClassKeyInterfaceFactory
-     */
-    private $taxClassKeyFactory;
+    const TAX_CLASS_ID = 'tax_class_id';
 
-    public function __construct(
-        TaxClassManagementInterface $taxClassManagement,
-        TaxClassKeyInterfaceFactory $taxClassKeyFactory
-    ) {
-        $this->taxClassManagement = $taxClassManagement;
-        $this->taxClassKeyFactory = $taxClassKeyFactory;
+    /**
+     * @var TaxClassRepositoryInterface
+     */
+    private $taxClassRepository;
+
+    public function __construct(TaxClassRepositoryInterface $taxClassRepository)
+    {
+        $this->taxClassRepository = $taxClassRepository;
     }
 
     public function enrich(array $productData): array
     {
-        $taxClassKey = $this->taxClassKeyFactory->create();
-        $taxClassKey->setType(TaxClassKeyInterface::TYPE_ID);
-        $taxClassKey->setValue($productData['id']);
+        if (false === array_key_exists(static::TAX_CLASS_ID, $productData)) {
+            $productData['tax_class'] = 'none';
+            return $productData;
+        }
 
-        $productData['tax_class'] = $this->taxClassManagement->getTaxClassId($taxClassKey);
+        $tacClass = $this->taxClassRepository->get($productData[static::TAX_CLASS_ID]);
+        $productData['tax_class'] = $tacClass->getClassName();
 
         return $productData;
     }
