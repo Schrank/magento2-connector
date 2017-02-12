@@ -2,10 +2,10 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Integration\Export;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\BaseEntityFieldTransformer;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\DefaultAttributeTransformer;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\MediaGalleryTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\BaseEntityFieldTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\DefaultAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\MediaGalleryTransformer;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductDataBuilder;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductEnricher\MediaGalleryEnricher;

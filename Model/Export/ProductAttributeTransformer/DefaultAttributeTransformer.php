@@ -1,11 +1,9 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute;
+namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer;
 
-class IgnoreAttributeTransformer implements AttributeTransformerInterface
-
+class DefaultAttributeTransformer implements AttributeTransformerInterface
 {
-
     /**
      * process
      *
@@ -20,6 +18,11 @@ class IgnoreAttributeTransformer implements AttributeTransformerInterface
         array $outputData,
         string $key
     ): array {
+        if (false === array_key_exists('attributes', $outputData)) {
+            $outputData['attributes'] = [];
+        }
+        $outputData['attributes'][$key] = $inputData[$key];
+
         return $outputData;
     }
 }

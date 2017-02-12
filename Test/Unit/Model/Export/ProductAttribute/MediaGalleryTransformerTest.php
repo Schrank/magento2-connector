@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductAttribute;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\MediaGalleryTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\MediaGalleryTransformer;
 use LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductTestData;
 
 class MediaGalleryTransformerTest extends \PHPUnit_Framework_TestCase

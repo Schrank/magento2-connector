@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\AttributeTransformerInterface;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\AttributeTransformerInterface;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductEnricher\ProductEnricherChain;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\EntityManager\HydratorInterface;

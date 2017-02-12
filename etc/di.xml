@@ -3,19 +3,19 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="LizardsAndPumpkins\Magento2Connector\Model\Export\ProductDataBuilder">
         <arguments>
-            <argument name="defaultAttributeTransformer" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\DefaultAttributeTransformer</argument>
+            <argument name="defaultAttributeTransformer" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\DefaultAttributeTransformer</argument>
             <argument name="attributeTransformers" xsi:type="array">
-                <item name="media_gallery" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\MediaGalleryTransformer</item>
-                <item name="type_id" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\BaseEntityFieldTransformer</item>
-                <item name="tax_class" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\BaseEntityFieldTransformer</item>
-                <item name="sku" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\BaseEntityFieldTransformer</item>
-                <item name="image" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
-                <item name="small_image" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
-                <item name="thumbnail" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
-                <item name="created_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
-                <item name="updated_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
-                <item name="custom_attributes" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\CustomAttributeTransformer</item>
-                <item name="product_links" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\ProductLinksTransformer</item>
+                <item name="media_gallery" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\MediaGalleryTransformer</item>
+                <item name="type_id" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\BaseEntityFieldTransformer</item>
+                <item name="tax_class" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\BaseEntityFieldTransformer</item>
+                <item name="sku" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\BaseEntityFieldTransformer</item>
+                <item name="image" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="small_image" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="thumbnail" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="created_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="updated_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="custom_attributes" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\CustomAttributeTransformer</item>
+                <item name="product_links" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\ProductLinksTransformer</item>
             </argument>
         </arguments>
     </type>
