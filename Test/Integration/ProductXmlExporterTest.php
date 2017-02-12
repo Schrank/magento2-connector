@@ -22,6 +22,6 @@ class ProductXmlExporterTest extends \PHPUnit_Framework_TestCase
     {
         /** @var StoreInterface $store */
         $store = ObjectManager::getInstance()->create(StoreInterface::class);
-        $this->subject->generateXml($store, 'de_DE', 100, 1);
+        $this->subject->generateXml($store, 'de_DE', 1000, 1);
     }
 }

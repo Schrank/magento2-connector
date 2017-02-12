@@ -15,6 +15,7 @@
                 <item name="created_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
                 <item name="updated_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\IgnoreAttributeTransformer</item>
                 <item name="custom_attributes" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\CustomAttributeTransformer</item>
+                <item name="product_links" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttribute\ProductLinksTransformer</item>
             </argument>
         </arguments>
     </type>
