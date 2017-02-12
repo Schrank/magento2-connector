@@ -6,6 +6,7 @@ use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
 
 class MediaGalleryTransformer implements AttributeTransformerInterface
 {
+    const IMAGES = 'images';
 
     /**
      * process
@@ -21,9 +22,15 @@ class MediaGalleryTransformer implements AttributeTransformerInterface
         array $outputData,
         string $key
     ): array {
-        $value = $inputData[$key];
+        $mediaGalleryData = $inputData[$key];
+
+        if (empty($mediaGalleryData)) {
+            $outputData[static::IMAGES] = [];
+            return $outputData;
+        }
+
         $mainImage = $this->getMainProductImage($inputData, $key);
-        $outputData['images'] = $this->prepareImagesData($value, $mainImage);
+        $outputData[static::IMAGES] = $this->prepareImagesData($mediaGalleryData, $mainImage);
 
         return $outputData;
     }
