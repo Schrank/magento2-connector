@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export;
 
-class Context
+class ExportContext
 {
     /**
      * @var string

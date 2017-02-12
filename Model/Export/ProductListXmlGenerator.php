@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\Context;
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductXmlGenerator;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\CatalogMerge;
@@ -36,7 +36,7 @@ class ProductListXmlGenerator
 
     public function generateXml(
         StoreInterface $store,
-        string $locale = 'de_DE',
+        string $locale = 'en_US',
         int $pageSize = 100,
         int $currentPage = 1
     ): CatalogMerge {
@@ -48,7 +48,7 @@ class ProductListXmlGenerator
 
         /** @var ProductInterface $product */
         foreach ($productCollection->getItems() as $product) {
-            $context = new Context($locale);
+            $context = new ExportContext($locale);
             $productXmlString = $this->productXmlGenerator->productToXmlString($product, $context);
             $this->catalogMerge->addProduct($productXmlString);
         }

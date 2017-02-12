@@ -33,7 +33,7 @@ class ProductXmlGenerator
         $this->defaultAttributeTransformer = $defaultAttributeTransformer;
     }
 
-    public function productToXmlString(ProductInterface $product, Context $context): XmlString
+    public function productToXmlString(ProductInterface $product, ExportContext $context): XmlString
     {
         $productXmlBuilder = new ProductBuilder(
             $this->productDataBuilder->buildData($product),
