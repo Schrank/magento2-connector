@@ -33,6 +33,7 @@ class ExportProductsCommand extends Command
     public function __construct(
         ProductListXmlExporterList $exporterList,
         ProductCollector $productCollector,
+        StoreRepositoryInterface $storeRepository,
         State $appState,
         $name = null
     ) {
@@ -40,6 +41,7 @@ class ExportProductsCommand extends Command
         $this->appState = $appState;
         $this->productCollector = $productCollector;
         $this->exporterList = $exporterList;
+        $this->storeRepository = $storeRepository;
     }
 
     protected function configure()
@@ -53,15 +55,16 @@ class ExportProductsCommand extends Command
     {
         $this->appState->setAreaCode('frontend');
 
-        /** @todo: get storeId, filename, exporter type, page size and locale from input arguments with defaults */
+        /** @todo: get storeId, exporter type, page size and locale from input arguments with defaults */
         $store = $this->storeRepository->getById(0);
         $exporter = $this->exporterList->getExporter(ProductListXmlToFileExporter::TYPE);
         $page = 1;
+        $pageSize = 100;
 
         do {
-            $productCollection = $this->productCollector->getCollection($store, 1000, $page++);
-            $exporter->exportProductXml($productCollection->getItems(), 'en_US', 'products.xml');
-        } while ($productCollection->count() > 0);
+            $productCollection = $this->productCollector->getCollection($store, $pageSize, $page);
+            $exporter->exportProductXml($productCollection->getItems(), 'en_US');
+        } while (false === $this->productCollector->shouldCancel($productCollection, $pageSize, $page++));
 
     }
 }

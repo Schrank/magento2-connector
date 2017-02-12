@@ -11,13 +11,11 @@ interface ProductListXmlExporterInterface
      *
      * @param ProductInterface[] $products
      * @param string             $locale
-     * @param string             $filename
      *
      * @return void
      */
     public function exportProductXml(
         array $products,
-        string $locale = 'en_US',
-        string $filename = 'products.xml'
+        string $locale = 'en_US'
     );
 }

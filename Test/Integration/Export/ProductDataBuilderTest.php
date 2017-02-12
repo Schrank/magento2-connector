@@ -35,7 +35,7 @@ class ProductDataBuilderTest extends \PHPUnit_Framework_TestCase
         /** @var StoreInterface $store */
         $store = ObjectManager::getInstance()->create(StoreInterface::class);
 
-        foreach ($productCollection->getCollection($store, 1, 1) as $product) {
+        foreach ($productCollection->getCollection($store, 100, 1) as $product) {
             $data = $this->subject->buildData($product);
             $this->assertEquals($product->getSku(), $data['sku']);
             $this->assertEquals($product->getName(), $data['attributes']['name']);

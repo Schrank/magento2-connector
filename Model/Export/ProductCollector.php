@@ -15,6 +15,10 @@ class ProductCollector
      * @var CollectionFactory
      */
     private $collectionFactory;
+    /**
+     * @var int
+     */
+    private $allProductsCount;
 
     public function __construct(CollectionFactory $collectionFactory)
     {
@@ -25,14 +29,16 @@ class ProductCollector
     {
         $collection = $this->collectionFactory->create();
 
+
         $collection->setStore($store);
+
+        $collection->setPageSize($pageSize);
+        $collection->setCurPage($currentPage);
+
         $collection->addAttributeToSelect('*');
 
         $collection->addAttributeToFilter(ProductInterface::VISIBILITY, ['neq' => Visibility::VISIBILITY_NOT_VISIBLE]);
         $collection->addAttributeToFilter(ProductInterface::STATUS, ['eq' => Status::STATUS_ENABLED]);
-
-        $collection->setPageSize($pageSize);
-        $collection->setCurPage($currentPage);
 
         $collection->load();
 
@@ -40,5 +46,19 @@ class ProductCollector
         $collection->addCategoryIds();
 
         return $collection;
+    }
+
+    public function shouldCancel(Collection $collection, int $pageSize, int $currentPage): bool
+    {
+        return ($pageSize * $currentPage) >= $this->getAllProductsCount($collection);
+    }
+
+    private function getAllProductsCount(Collection $collection): int
+    {
+        if (null === $this->allProductsCount) {
+            $this->allProductsCount = $collection->getSize();
+        }
+
+        return $this->allProductsCount;
     }
 }

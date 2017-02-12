@@ -8,19 +8,13 @@ use Magento\Catalog\Api\Data\ProductInterface;
 class ProductListXmlGenerator
 {
     /**
-     * @var CatalogMerge
-     */
-    private $catalogMerge;
-    /**
      * @var ProductXmlGenerator
      */
     private $productXmlGenerator;
 
     public function __construct(
-        CatalogMerge $catalogMerge,
         ProductXmlGenerator $productXmlGenerator
     ) {
-        $this->catalogMerge = $catalogMerge;
         $this->productXmlGenerator = $productXmlGenerator;
     }
 
@@ -32,16 +26,12 @@ class ProductListXmlGenerator
      *
      * @return CatalogMerge
      */
-    public function generateXml(
-        array $products,
-        string $locale = 'en_US'
-    ): CatalogMerge {
-        foreach ($products as $product) {
+    public function generateXml(array $products, string $locale = 'en_US'): CatalogMerge {
+        return array_reduce($products, function (CatalogMerge $catalogMerger, ProductInterface $product) use ($locale) {
             $context = new ExportContext($locale);
             $productXmlString = $this->productXmlGenerator->productToXmlString($product, $context);
-            $this->catalogMerge->addProduct($productXmlString);
-        }
-
-        return $this->catalogMerge;
+            $catalogMerger->addProduct($productXmlString);
+            return $catalogMerger;
+        }, new CatalogMerge());
     }
 }
