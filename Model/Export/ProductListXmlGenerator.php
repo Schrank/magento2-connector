@@ -2,12 +2,8 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductXmlGenerator;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\CatalogMerge;
 use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Store\Api\Data\StoreInterface;
 
 class ProductListXmlGenerator
 {
@@ -16,38 +12,31 @@ class ProductListXmlGenerator
      */
     private $catalogMerge;
     /**
-     * @var ProductCollector
-     */
-    private $productCollector;
-    /**
      * @var ProductXmlGenerator
      */
     private $productXmlGenerator;
 
     public function __construct(
         CatalogMerge $catalogMerge,
-        ProductCollector $productCollector,
         ProductXmlGenerator $productXmlGenerator
     ) {
         $this->catalogMerge = $catalogMerge;
-        $this->productCollector = $productCollector;
         $this->productXmlGenerator = $productXmlGenerator;
     }
 
+    /**
+     * generateXml
+     *
+     * @param ProductInterface[] $products
+     * @param string             $locale
+     *
+     * @return CatalogMerge
+     */
     public function generateXml(
-        StoreInterface $store,
-        string $locale = 'en_US',
-        int $pageSize = 100,
-        int $currentPage = 1
+        array $products,
+        string $locale = 'en_US'
     ): CatalogMerge {
-        $productCollection = $this->productCollector->getCollection($store, $pageSize, $currentPage);
-
-        if ((int)$productCollection->count() === 0) {
-            return null;
-        }
-
-        /** @var ProductInterface $product */
-        foreach ($productCollection->getItems() as $product) {
+        foreach ($products as $product) {
             $context = new ExportContext($locale);
             $productXmlString = $this->productXmlGenerator->productToXmlString($product, $context);
             $this->catalogMerge->addProduct($productXmlString);

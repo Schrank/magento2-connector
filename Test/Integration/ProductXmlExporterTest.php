@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Integration;
 
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlGenerator;
 use Magento\Store\Api\Data\StoreInterface;
 use Magento\TestFramework\ObjectManager;
@@ -22,6 +23,9 @@ class ProductXmlExporterTest extends \PHPUnit_Framework_TestCase
     {
         /** @var StoreInterface $store */
         $store = ObjectManager::getInstance()->create(StoreInterface::class);
-        $this->subject->generateXml($store, 'de_DE', 1000, 1);
+        /** @var ProductCollector $productCollector */
+        $productCollector = ObjectManager::getInstance()->create(ProductCollector::class);
+        $products = $productCollector->getCollection($store, 10, 1)->getItems();
+        $this->subject->generateXml($products, 'de_DE');
     }
 }
