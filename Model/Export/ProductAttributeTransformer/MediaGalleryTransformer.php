@@ -35,7 +35,15 @@ class MediaGalleryTransformer implements AttributeTransformerInterface
         return $outputData;
     }
 
-    private function getMainProductImage(array $productData, string $key): ProductAttributeMediaGalleryEntryInterface
+    /**
+     * getMainProductImage
+     *
+     * @param array  $productData
+     * @param string $key
+     *
+     * @return ProductAttributeMediaGalleryEntryInterface|null
+     */
+    private function getMainProductImage(array $productData, string $key)
     {
         if (false === array_key_exists($key, $productData)) {
             return null;
@@ -52,6 +60,7 @@ class MediaGalleryTransformer implements AttributeTransformerInterface
 
         return $mainImage;
     }
+
     /**
      * @param ProductAttributeMediaGalleryEntryInterface[] $mediaGalleryData
      * @param ProductAttributeMediaGalleryEntryInterface $mainProductImage
