@@ -26,9 +26,11 @@
             </argument>
         </arguments>
     </type>
-    <type name="LizardsAndPumpkins\Magento2Connector\Model\ProductXmlExporter">
+    <type name="Magento\Framework\Console\CommandList">
         <arguments>
-            <argument name="directoryWrite" xsi:type="object">Magento\Framework\Filesystem\Directory\Write</argument>
+            <argument name="commands" xsi:type="array">
+                <item name="lizardsandpumpkins:products:export" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Command\ExportProductsCommand</item>
+            </argument>
         </arguments>
     </type>
 </config>

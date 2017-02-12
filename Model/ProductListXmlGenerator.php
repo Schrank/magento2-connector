@@ -7,11 +7,9 @@ use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductXmlGenerator;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\CatalogMerge;
 use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem\Directory\WriteFactory;
 use Magento\Store\Api\Data\StoreInterface;
 
-class ProductXmlExporter
+class ProductListXmlGenerator
 {
     /**
      * @var CatalogMerge
@@ -25,36 +23,29 @@ class ProductXmlExporter
      * @var ProductXmlGenerator
      */
     private $productXmlGenerator;
-    /**
-     * @var DirectoryList
-     */
-    private $directoryList;
-    /**
-     * @var WriteFactory
-     */
-    private $writeFactory;
 
     public function __construct(
         CatalogMerge $catalogMerge,
         ProductCollector $productCollector,
-        ProductXmlGenerator $productXmlGenerator,
-        DirectoryList $directoryList,
-        WriteFactory $writeFactory
+        ProductXmlGenerator $productXmlGenerator
     ) {
         $this->catalogMerge = $catalogMerge;
         $this->productCollector = $productCollector;
         $this->productXmlGenerator = $productXmlGenerator;
-        $this->directoryList = $directoryList;
-        $this->writeFactory = $writeFactory;
     }
 
-    public function exportXml(
+    public function generateXml(
         StoreInterface $store,
         string $locale = 'de_DE',
         int $pageSize = 100,
         int $currentPage = 1
-    ) {
+    ): CatalogMerge {
         $productCollection = $this->productCollector->getCollection($store, $pageSize, $currentPage);
+
+        if ($productCollection->count() === 0) {
+            return null;
+        }
+
         /** @var ProductInterface $product */
         foreach ($productCollection->getItems() as $product) {
             $context = new Context($locale);
@@ -62,10 +53,6 @@ class ProductXmlExporter
             $this->catalogMerge->addProduct($productXmlString);
         }
 
-        $xmlString = $this->catalogMerge->getPartialXmlString();
-        $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
-        $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'lizardsandpumpkins']);
-        $writer = $this->writeFactory->create($exportDir);
-        $writer->writeFile('products.xml', $xmlString);
+        return $this->catalogMerge;
     }
 }
