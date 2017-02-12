@@ -34,4 +34,11 @@
             </argument>
         </arguments>
     </type>
+    <type name="LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlExporterList">
+        <arguments>
+            <argument name="productListXmlExporters" xsi:type="array">
+                <item name="file" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlToFileExporter</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

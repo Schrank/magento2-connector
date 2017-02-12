@@ -9,6 +9,8 @@ use Magento\Framework\Filesystem\Directory\WriteFactory;
 
 class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
 {
+    const TYPE = 'file';
+
     /**
      * @var ProductListXmlGenerator
      */
