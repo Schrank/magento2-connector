@@ -53,14 +53,14 @@ class ExportProductsCommand extends Command
     {
         $this->appState->setAreaCode('frontend');
 
-        /** @todo: get storeId and locale from input arguments */
+        /** @todo: get storeId, filename, exporter type, page size and locale from input arguments with defaults */
         $store = $this->storeRepository->getById(0);
         $exporter = $this->exporterList->getExporter(ProductListXmlToFileExporter::TYPE);
         $page = 1;
 
         do {
             $productCollection = $this->productCollector->getCollection($store, 1000, $page++);
-            $exporter->exportProductXml($productCollection->getItems(), 'en_US');
+            $exporter->exportProductXml($productCollection->getItems(), 'en_US', 'products.xml');
         } while ($productCollection->count() > 0);
 
     }

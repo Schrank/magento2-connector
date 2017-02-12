@@ -39,18 +39,20 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
      *
      * @param ProductInterface[] $products
      * @param string             $locale
+     * @param string             $filename
      *
-     * @return mixed
+     * @return void
      */
     public function exportProductXml(
         array $products,
-        string $locale = 'en_US'
+        string $locale = 'en_US',
+        string $filename = 'products.xml'
     ) {
         $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
         $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'export', 'lizardsandpumpkins']);
         $writer = $this->writeFactory->create($exportDir);
 
         $catalogMerger = $this->productListXmlGenerator->generateXml($products, $locale);
-        $writer->writeFile('products.xml', $catalogMerger->getPartialXmlString(), 'a+');
+        $writer->writeFile($filename, $catalogMerger->getPartialXmlString(), 'a+');
     }
 }
