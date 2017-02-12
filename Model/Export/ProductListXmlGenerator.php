@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model;
+namespace LizardsAndPumpkins\Magento2Connector\Model\Export;
 
 use LizardsAndPumpkins\Magento2Connector\Model\Export\Context;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
