@@ -39,12 +39,12 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
      * @param ProductInterface[] $products
      * @param ExportContext $context
      *
-     * @return void
+     * @return ProductListXmlExportResult
      */
     public function exportProductXml(
         array $products,
         ExportContext $context
-    ) {
+    ): ProductListXmlExportResult {
         $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
         $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'export', 'lizardsandpumpkins']);
         $writer = $this->writeFactory->create($exportDir);
@@ -57,6 +57,8 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
 
         $xml = $this->productListXmlGenerator->generateXml($products, $context);
         $writer->writeFile($filename, $xml, 'a+');
+
+        return new ProductListXmlExportResult([sprintf('exported file: %s', $filename)], $xml);
     }
 
     /**

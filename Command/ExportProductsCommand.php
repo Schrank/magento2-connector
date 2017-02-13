@@ -104,7 +104,8 @@ class ExportProductsCommand extends Command
 
         do {
             $productCollection = $this->productCollector->getCollection($store, $pageSize, $page);
-            $exporter->exportProductXml($productCollection->getItems(), $context);
+            $result = $exporter->exportProductXml($productCollection->getItems(), $context);
+            $output->writeln($result->getMessages());
         } while (false === $this->productCollector->shouldCancel($productCollection, $pageSize, $page++));
     }
 }

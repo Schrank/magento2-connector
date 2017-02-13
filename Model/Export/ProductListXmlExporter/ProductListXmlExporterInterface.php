@@ -13,10 +13,10 @@ interface ProductListXmlExporterInterface
      * @param ProductInterface[] $products
      * @param ExportContext      $context
      *
-     * @return void
+     * @return ProductListXmlExportResult
      */
     public function exportProductXml(
         array $products,
         ExportContext $context
-    );
+    ): ProductListXmlExportResult;
 }
