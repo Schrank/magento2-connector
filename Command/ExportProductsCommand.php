@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Command;
 
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlExporterList;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlToFileExporter;
@@ -58,13 +59,13 @@ class ExportProductsCommand extends Command
         /** @todo: get storeId, exporter type, page size and locale from input arguments with defaults */
         $store = $this->storeRepository->getById(0);
         $exporter = $this->exporterList->getExporter(ProductListXmlToFileExporter::TYPE);
-        $page = 1;
+        $context = new ExportContext('en_US');
         $pageSize = 100;
+        $page = 1;
 
         do {
             $productCollection = $this->productCollector->getCollection($store, $pageSize, $page);
-            $exporter->exportProductXml($productCollection->getItems(), 'en_US');
+            $exporter->exportProductXml($productCollection->getItems(), $context);
         } while (false === $this->productCollector->shouldCancel($productCollection, $pageSize, $page++));
-
     }
 }

@@ -27,16 +27,14 @@ class ProductCollector
 
     public function getCollection(StoreInterface $store, int $pageSize = 100, int $currentPage = 1) : Collection
     {
+        /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
-
-
         $collection->setStore($store);
 
         $collection->setPageSize($pageSize);
         $collection->setCurPage($currentPage);
 
         $collection->addAttributeToSelect('*');
-
         $collection->addAttributeToFilter(ProductInterface::VISIBILITY, ['neq' => Visibility::VISIBILITY_NOT_VISIBLE]);
         $collection->addAttributeToFilter(ProductInterface::STATUS, ['eq' => Status::STATUS_ENABLED]);
 

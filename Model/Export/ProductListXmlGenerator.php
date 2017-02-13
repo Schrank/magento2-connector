@@ -12,26 +12,32 @@ class ProductListXmlGenerator
      */
     private $productXmlGenerator;
 
-    public function __construct(
-        ProductXmlGenerator $productXmlGenerator
-    ) {
+    public function __construct(ProductXmlGenerator $productXmlGenerator)
+    {
         $this->productXmlGenerator = $productXmlGenerator;
     }
 
     /**
-     * generateXml
-     *
      * @param ProductInterface[] $products
-     * @param string             $locale
+     * @param ExportContext $context
      *
-     * @return CatalogMerge
+     * @return string
      */
-    public function generateXml(array $products, string $locale = 'en_US'): CatalogMerge {
-        $context = new ExportContext($locale);
-        return array_reduce($products, function (CatalogMerge $catalogMerger, ProductInterface $product) use ($context) {
+    public function generateXml(array $products, ExportContext $context): string
+    {
+        /** @var CatalogMerge $catalogMerger */
+        $catalogMerger = array_reduce($products, function (
+            CatalogMerge $catalogMerger,
+            ProductInterface $product
+        ) use ($context) {
             $productXmlString = $this->productXmlGenerator->productToXmlString($product, $context);
             $catalogMerger->addProduct($productXmlString);
             return $catalogMerger;
         }, new CatalogMerge());
+
+        return implode((string)null, [
+            $catalogMerger->getPartialXmlString(),
+            $catalogMerger->finish()
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter;
 
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlGenerator;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
@@ -35,16 +36,14 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
     }
 
     /**
-     * exportProductXml
-     *
      * @param ProductInterface[] $products
-     * @param string             $locale
+     * @param ExportContext $context
      *
      * @return void
      */
     public function exportProductXml(
         array $products,
-        string $locale = 'en_US'
+        ExportContext $context
     ) {
         $varDir = $this->directoryList->getPath(DirectoryList::VAR_DIR);
         $exportDir = implode(DIRECTORY_SEPARATOR, [$varDir, 'export', 'lizardsandpumpkins']);
@@ -56,9 +55,8 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
             $writer->delete($filename);
         }
 
-        $catalogMerger = $this->productListXmlGenerator->generateXml($products, $locale);
-        $writer->writeFile($filename, $catalogMerger->getPartialXmlString(), 'a+');
-        $writer->writeFile($filename, $catalogMerger->finish(), 'a+');
+        $xml = $this->productListXmlGenerator->generateXml($products, $context);
+        $writer->writeFile($filename, $xml, 'a+');
     }
 
     /**

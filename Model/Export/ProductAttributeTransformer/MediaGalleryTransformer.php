@@ -8,20 +8,8 @@ class MediaGalleryTransformer implements AttributeTransformerInterface
 {
     const IMAGES = 'images';
 
-    /**
-     * process
-     *
-     * @param array $inputData
-     * @param array $outputData
-     * @param string $key
-     *
-     * @return array $outputData
-     */
-    public function process(
-        array $inputData,
-        array $outputData,
-        string $key
-    ): array {
+    public function process(array $inputData, array $outputData, string $key): array
+    {
         $mediaGalleryData = $inputData[$key];
 
         if (empty($mediaGalleryData)) {

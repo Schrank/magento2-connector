@@ -6,20 +6,8 @@ class CustomAttributeTransformer implements AttributeTransformerInterface
 {
     const CUSTOM_ATTRIBUTES = 'custom_attributes';
 
-    /**
-     * process
-     *
-     * @param array $inputData
-     * @param array $outputData
-     * @param string $key
-     *
-     * @return array $outputData
-     */
-    public function process(
-        array $inputData,
-        array $outputData,
-        string $key
-    ): array {
+    public function process(array $inputData, array $outputData, string $key): array
+    {
         if ($key !== self::CUSTOM_ATTRIBUTES
             || false === array_key_exists(static::CUSTOM_ATTRIBUTES, $inputData)
             || false === is_array($inputData[static::CUSTOM_ATTRIBUTES])) {

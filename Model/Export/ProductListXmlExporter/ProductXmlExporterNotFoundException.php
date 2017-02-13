@@ -14,5 +14,4 @@ class ProductXmlExporterNotFoundException extends \Exception
         $message = sprintf('Product List Xml Exporter not found: %s', $exporterType);
         parent::__construct($message, $code, $previous);
     }
-
 }

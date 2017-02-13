@@ -4,8 +4,6 @@ namespace LizardsAndPumpkins\Magento2Connector\Test\Integration\Command;
 
 use LizardsAndPumpkins\Magento2Connector\Command\ExportProductsCommand;
 use Magento\TestFramework\ObjectManager;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\StringInput;
 
 class ExportProductsCommandTest extends CommandTestCase
 {

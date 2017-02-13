@@ -20,7 +20,7 @@ class ProductEnricherChain
             $enrichedProductData,
             ProductEnricherInterface $enricher
         ) use ($productData) {
-                return $enricher->enrich($productData);
+            return $enricher->enrich($productData);
         }, $productData);
     }
 }

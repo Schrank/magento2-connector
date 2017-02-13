@@ -11,9 +11,8 @@ class MediaGalleryEnricher implements ProductEnricherInterface
      */
     private $mediaGalleryManagement;
 
-    public function __construct(
-        ProductAttributeMediaGalleryManagementInterface $mediaGalleryManagement
-    ) {
+    public function __construct(ProductAttributeMediaGalleryManagementInterface $mediaGalleryManagement)
+    {
         $this->mediaGalleryManagement = $mediaGalleryManagement;
     }
 

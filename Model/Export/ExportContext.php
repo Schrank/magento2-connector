@@ -19,6 +19,11 @@ class ExportContext
         $this->additional = $additional;
     }
 
+    public function addContext($key, $value)
+    {
+        $this->additional[$key] = $value;
+    }
+
     public function toArray()
     {
         return array_merge($this->additional, [

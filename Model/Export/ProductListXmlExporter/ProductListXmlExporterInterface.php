@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter;
 
+use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
 use Magento\Catalog\Api\Data\ProductInterface;
 
 interface ProductListXmlExporterInterface
@@ -10,12 +11,12 @@ interface ProductListXmlExporterInterface
      * exportProductXml
      *
      * @param ProductInterface[] $products
-     * @param string             $locale
+     * @param ExportContext      $context
      *
      * @return void
      */
     public function exportProductXml(
         array $products,
-        string $locale = 'en_US'
+        ExportContext $context
     );
 }
