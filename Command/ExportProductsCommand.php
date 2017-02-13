@@ -80,7 +80,7 @@ class ExportProductsCommand extends Command
                 self::OPTION_EXPORTER_TYPE,
                 'e',
                 InputOption::VALUE_OPTIONAL,
-                'Which exporter to be used (file)',
+                'Which exporter to be used (file|stdout)',
                 ProductListXmlToFileExporter::TYPE
             );
     }
@@ -104,7 +104,7 @@ class ExportProductsCommand extends Command
 
         do {
             $productCollection = $this->productCollector->getCollection($store, $pageSize, $page);
-            $result = $exporter->exportProductXml($productCollection->getItems(), $context);
+            $result = $exporter->exportProductListXml($productCollection->getItems(), $context);
             $output->writeln($result->getMessages());
         } while (false === $this->productCollector->shouldCancel($productCollection, $pageSize, $page++));
     }

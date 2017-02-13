@@ -38,6 +38,7 @@
         <arguments>
             <argument name="productListXmlExporters" xsi:type="array">
                 <item name="file" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlToFileExporter</item>
+                <item name="stdout" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlToStdOutExporter</item>
             </argument>
         </arguments>
     </type>
