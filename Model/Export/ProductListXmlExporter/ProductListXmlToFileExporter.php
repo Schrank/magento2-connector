@@ -41,7 +41,7 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
      *
      * @return ProductListXmlExportResult
      */
-    public function exportProductXml(
+    public function exportProductListXml(
         array $products,
         ExportContext $context
     ): ProductListXmlExportResult {
