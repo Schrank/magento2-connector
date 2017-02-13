@@ -2,7 +2,9 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter;
 
-class ProductListXmlExporterList
+use Magento\Framework\Data\OptionSourceInterface;
+
+class ProductListXmlExporterList implements OptionSourceInterface
 {
     /**
      * @var array
@@ -32,5 +34,20 @@ class ProductListXmlExporterList
         }
 
         return $this->productListXmlExporters[$type];
+    }
+
+    /**
+     * Return array of options as value-label pairs
+     *
+     * @return array Format: array(array('value' => '<value>', 'label' => '<label>'), ...)
+     */
+    public function toOptionArray()
+    {
+        return array_map(function (ProductListXmlExporterInterface $exporter) {
+            return [
+                'value' => $exporter->getType(),
+                'label' => $exporter->getLabel()
+            ];
+        }, $this->productListXmlExporters);
     }
 }

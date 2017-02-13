@@ -61,6 +61,16 @@ class ProductListXmlToFileExporter implements ProductListXmlExporterInterface
         return new ProductListXmlExportResult([sprintf('exported file: %s', $filename)], $xml);
     }
 
+    public function getType(): string
+    {
+        return self::TYPE;
+    }
+
+    public function getLabel(): string
+    {
+        return 'File Exporter';
+    }
+
     /**
      * getProductIds
      *

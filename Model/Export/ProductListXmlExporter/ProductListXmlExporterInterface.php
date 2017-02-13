@@ -19,4 +19,8 @@ interface ProductListXmlExporterInterface
         array $products,
         ExportContext $context
     ): ProductListXmlExportResult;
+
+    public function getType(): string;
+
+    public function getLabel(): string;
 }

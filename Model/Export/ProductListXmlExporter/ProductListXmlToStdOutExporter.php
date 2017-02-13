@@ -33,4 +33,14 @@ class ProductListXmlToStdOutExporter implements ProductListXmlExporterInterface
         $xml = $this->productListXmlGenerator->generateXml($products, $context);
         return new ProductListXmlExportResult([$xml], $xml);
     }
+
+    public function getType(): string
+    {
+        return self::TYPE;
+    }
+
+    public function getLabel(): string
+    {
+        return 'StdOut Exporter';
+    }
 }
