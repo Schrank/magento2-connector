@@ -12,7 +12,24 @@ class ProductTestData extends \PHPUnit_Framework_TestCase
             'type_id' => 'simple',
             'sku' => '123',
             'tax_class_id' => '7',
+            'name' => 'fancy product',
+            'created_at' => '01-01-1970 00:00:00',
             'visibility' => 3,
+            'product_links' => [
+                [
+                    'sku' => '123',
+                    'link_type' => 'associated',
+                    'linked_product_sku' => 'linked1sku',
+                    'linked_product_type' => 'simple',
+                    'position' => 0,
+                ]
+            ],
+            'custom_attributes' => [
+                [
+                    'attribute_code' => 'category_ids',
+                    'value' => [1, 2, 3]
+                ]
+            ],
             'url_key' => 'lalala-cool-seo-url',
             'media_gallery' => [
                 $this->getMediaGalleryEntryMock(['base'], 'some/file/somewhere.png', 'This is the label')
@@ -27,7 +44,9 @@ class ProductTestData extends \PHPUnit_Framework_TestCase
             'sku'        => '123',
             'tax_class'  => 7,
             'attributes' => [
+                'category_ids' => [1, 2, 3],
                 'visibility' => 3,
+                'name' => 'fancy product',
                 'url_key' => 'lalala-cool-seo-url',
                 'non_canonical_url_key' => [
                     'foo/bar.html',
@@ -44,7 +63,7 @@ class ProductTestData extends \PHPUnit_Framework_TestCase
             ],
             'associated_products' => [
                 [
-                    'sku'        => 'associated-product-1',
+                    'sku'        => 'linked1sku',
                     'tax_class'  => 4,
                     'attributes' => [
                         'stock_qty' => 12,

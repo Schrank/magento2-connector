@@ -8,8 +8,7 @@ class CustomAttributeTransformer implements AttributeTransformerInterface
 
     public function process(array $inputData, array $outputData, string $key): array
     {
-        if ($key !== self::CUSTOM_ATTRIBUTES
-            || false === array_key_exists(static::CUSTOM_ATTRIBUTES, $inputData)
+        if (false === array_key_exists(static::CUSTOM_ATTRIBUTES, $inputData)
             || false === is_array($inputData[static::CUSTOM_ATTRIBUTES])) {
             return $outputData;
         }

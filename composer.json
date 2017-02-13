@@ -1,5 +1,5 @@
 {
-  "name": "lizardsandpumpkins/magento2-connector",
+  "name": "lizards-and-pumpkins/magento2-connector",
   "description": "l&p magento2 connector",
   "require": {
     "php": "^7.0.0",
