@@ -41,11 +41,9 @@ class ProductDataBuilder
     public function buildData(ProductInterface $product): array
     {
         $productData = $this->productEnricherChain->process($this->hydrator->extract($product));
-        $processedData = array_reduce(array_keys($productData), function ($processedData, $key) use ($productData) {
+        return array_reduce(array_keys($productData), function ($processedData, $key) use ($productData) {
             $transformer = $this->attributeTransformers[$key] ?? $this->defaultAttributeTransformer;
             return $transformer->process($productData, $processedData, $key);
         }, []);
-
-        return $processedData;
     }
 }
