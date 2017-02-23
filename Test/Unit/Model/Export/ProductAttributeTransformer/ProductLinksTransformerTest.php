@@ -3,31 +3,44 @@ declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductAttributeTransformer;
 
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\ProductLinksTransformer;
-use LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductTestData;
 
-class ProductLinksTransformerTest extends \PHPUnit_Framework_TestCase
+class ProductLinksTransformerTest extends AbstractTransformerTest
 {
-    /**
-     * @var ProductLinksTransformer
-     */
-    private $subject;
-    /**
-     * @var ProductTestData
-     */
-    private $productTestData;
-
     protected function setUp()
     {
         $this->subject = new ProductLinksTransformer();
-        $this->productTestData = new ProductTestData();
     }
 
-    public function testBaseEntityFieldTransformation()
+    public function transformationTestDataProvider()
     {
-        $inputData = $this->productTestData->getInputData();
-        $processedData = $this->subject->process($inputData, [], 'product_links');
-        $expectedResult = $this->productTestData->getProcessedData();
-
-        $this->assertEquals($expectedResult['associated_products'], $processedData['associated_products']);
+        return [
+            [
+                [
+                    'product_links' => [
+                        [
+                            'sku' => '123',
+                            'link_type' => 'associated',
+                            'linked_product_sku' => 'linked1sku',
+                            'linked_product_type' => 'simple',
+                            'position' => 0,
+                        ]
+                    ]
+                ],
+                'product_links',
+                [
+                    'associated_products' => [
+                        [
+                            'sku'        => 'linked1sku',
+                            /*'tax_class'  => 4,
+                            'attributes' => [
+                                'stock_qty' => 12,
+                                'visible'   => true,
+                                'color'     => 'green',
+                            ],*/
+                        ],
+                    ]
+                ]
+            ]
+        ];
     }
 }

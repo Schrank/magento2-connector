@@ -12,7 +12,7 @@ class ProductLinksTransformer implements AttributeTransformerInterface
 
         $outputData['associated_products'] = array_map(function ($linkedProductData) {
             return [
-                'sku' => $linkedProductData['sku'] ?? (string)null
+                'sku' => $linkedProductData['linked_product_sku'] ?? (string)null
             ];
         }, $inputData[$key]);
 

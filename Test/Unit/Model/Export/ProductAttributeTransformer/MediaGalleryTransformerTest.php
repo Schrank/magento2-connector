@@ -3,31 +3,47 @@ declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductAttributeTransformer;
 
 use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductAttributeTransformer\MediaGalleryTransformer;
-use LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\Export\ProductTestData;
+use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
 
-class MediaGalleryTransformerTest extends \PHPUnit_Framework_TestCase
+class MediaGalleryTransformerTest extends AbstractTransformerTest
 {
-    /**
-     * @var MediaGalleryTransformer
-     */
-    private $subject;
-    /**
-     * @var ProductTestData
-     */
-    private $productTestData;
 
     protected function setUp()
     {
         $this->subject = new MediaGalleryTransformer();
-        $this->productTestData = new ProductTestData();
     }
 
-    public function testMediaGalleryTransformation()
+    public function transformationTestDataProvider()
     {
-        $inputData = $this->productTestData->getInputData();
-        $processedData = $this->subject->process($inputData, [], 'media_gallery');
-        $expectedResult = $this->productTestData->getProcessedData();
+        return [
+            [
+                [
+                    'media_gallery' => [
+                        $this->getMediaGalleryEntryMock(['base'], 'some/file/somewhere.png', 'This is the label')
+                    ]
+                ],
+                'media_gallery',
+                [
+                    'images' => [
+                        [
+                            'main'  => true,
+                            'file'  => 'somewhere.png',
+                            'label' => 'This is the label',
+                        ],
+                    ],
+                ]
+            ]
+        ];
+    }
 
-        $this->assertEquals($expectedResult['images'], $processedData['images']);
+    private function getMediaGalleryEntryMock($types, $file, $label)
+    {
+        $mock = $this->getMockBuilder(ProductAttributeMediaGalleryEntryInterface::class)->getMock();
+
+        $mock->method('getTypes')->willReturn($types);
+        $mock->method('getLabel')->willReturn($label);
+        $mock->method('getFile')->willReturn($file);
+
+        return $mock;
     }
 }
