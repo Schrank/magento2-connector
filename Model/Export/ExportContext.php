@@ -13,7 +13,7 @@ class ExportContext
      */
     private $additional;
 
-    public function __construct(string $locale, $additional = [])
+    public function __construct(string $locale, array $additional = [])
     {
         $this->locale = $locale;
         $this->additional = $additional;
