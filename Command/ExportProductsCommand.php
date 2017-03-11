@@ -2,10 +2,10 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Command;
 
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ExportContext;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductCollector;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlExporterList;
-use LizardsAndPumpkins\Magento2Connector\Model\Export\ProductListXmlExporter\ProductListXmlToFileExporter;
+use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ExportContext;
+use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductCollector;
+use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlExporterList;
+use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlToFileExporter;
 use Magento\Config\Model\Config\Backend\Admin\Custom;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\State;
