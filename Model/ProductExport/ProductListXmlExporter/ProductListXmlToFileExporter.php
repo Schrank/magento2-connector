@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ExportContext;
+use LizardsAndPumpkins\Magento2Connector\Model\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlGenerator;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;

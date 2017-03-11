@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Command;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ExportContext;
+use LizardsAndPumpkins\Magento2Connector\Model\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlExporterList;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlToFileExporter;

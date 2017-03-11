@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Test\Integration;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ExportContext;
+use LizardsAndPumpkins\Magento2Connector\Model\ExportContext;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductCollector;
 use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlGenerator;
 use Magento\Store\Api\Data\StoreInterface;
