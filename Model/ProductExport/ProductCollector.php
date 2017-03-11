@@ -5,37 +5,41 @@ namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-use Magento\Catalog\Model\ResourceModel\Product\Collection;
+use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Store\Api\Data\StoreInterface;
 
-class ProductCollector
+class ProductCollector extends AbstractCatalogEntityCollector
 {
     /**
      * @var CollectionFactory
      */
     private $collectionFactory;
-    /**
-     * @var int
-     */
-    private $allProductsCount;
 
     public function __construct(CollectionFactory $collectionFactory)
     {
         $this->collectionFactory = $collectionFactory;
     }
 
-    public function getCollection(StoreInterface $store, int $pageSize = 100, int $currentPage = 1) : Collection
-    {
-        $collection = $this->collectionFactory->create();
-
-        $collection->setStore($store);
-
-        $collection->setPageSize($pageSize);
-        $collection->setCurPage($currentPage);
-
-        $collection->addAttributeToSelect('*');
-
+    /**
+     * prepareCollection
+     *
+     * @param AbstractCollection|ProductCollection $collection
+     * @param StoreInterface                       $store
+     * @param int                                  $pageSize
+     * @param int                                  $currentPage
+     * @param array                                $attributesToSelect
+     *
+     * @return AbstractCollection
+     */
+    protected function prepareCollection(
+        AbstractCollection $collection,
+        StoreInterface $store,
+        int $pageSize,
+        int $currentPage,
+        array $attributesToSelect = ['*']
+    ): AbstractCollection {
         $collection->addAttributeToFilter(ProductInterface::VISIBILITY, ['neq' => Visibility::VISIBILITY_NOT_VISIBLE]);
         $collection->addAttributeToFilter(ProductInterface::STATUS, ['eq' => Status::STATUS_ENABLED]);
 
@@ -47,17 +51,13 @@ class ProductCollector
         return $collection;
     }
 
-    public function shouldCancel(Collection $collection, int $pageSize, int $currentPage): bool
+    /**
+     * getCollectionModel
+     *
+     * @return AbstractCollection|ProductCollection
+     */
+    protected function getCollectionModel(): AbstractCollection
     {
-        return ($pageSize * $currentPage) >= $this->getAllProductsCount($collection);
-    }
-
-    private function getAllProductsCount(Collection $collection): int
-    {
-        if (null === $this->allProductsCount) {
-            $this->allProductsCount = $collection->getSize();
-        }
-
-        return $this->allProductsCount;
+        return $this->collectionFactory->create();
     }
 }
