@@ -2,9 +2,10 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher;
 
+use LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherInterface;
 use Magento\Catalog\Api\ProductAttributeMediaGalleryManagementInterface;
 
-class MediaGalleryEnricher implements ProductEnricherInterface
+class MediaGalleryEnricher implements EntityEnricherInterface
 {
     /**
      * @var ProductAttributeMediaGalleryManagementInterface

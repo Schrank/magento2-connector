@@ -2,9 +2,10 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher;
 
+use LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherInterface;
 use Magento\Tax\Api\TaxClassRepositoryInterface;
 
-class TaxClassEnricher implements ProductEnricherInterface
+class TaxClassEnricher implements EntityEnricherInterface
 {
     const TAX_CLASS_ID = 'tax_class_id';
 

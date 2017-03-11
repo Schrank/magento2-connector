@@ -19,9 +19,9 @@
             </argument>
         </arguments>
     </type>
-    <type name="LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\ProductEnricherChain">
+    <type name="LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherChain">
         <arguments>
-            <argument name="productEnrichers" xsi:type="array">
+            <argument name="entityEnrichers" xsi:type="array">
                 <item name="media_gallery" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\MediaGalleryEnricher</item>
                 <item name="tax_class" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\TaxClassEnricher</item>
             </argument>
