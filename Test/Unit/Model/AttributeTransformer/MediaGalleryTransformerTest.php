@@ -1,8 +1,8 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\ProductExport\ProductAttributeTransformer;
+namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\AttributeTransformer;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\MediaGalleryTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\ProductMediaGalleryTransformer;
 use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
 
 class MediaGalleryTransformerTest extends AbstractTransformerTest
@@ -10,7 +10,7 @@ class MediaGalleryTransformerTest extends AbstractTransformerTest
 
     protected function setUp()
     {
-        $this->subject = new MediaGalleryTransformer();
+        $this->subject = new ProductMediaGalleryTransformer();
     }
 
     public function transformationTestDataProvider()

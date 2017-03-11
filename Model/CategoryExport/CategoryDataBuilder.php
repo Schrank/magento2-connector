@@ -1,13 +1,12 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
+namespace LizardsAndPumpkins\Magento2Connector\Model\CategoryExport;
 
 use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\AttributeTransformerInterface;
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\ProductEnricherChain;
-use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Framework\EntityManager\HydratorInterface;
 
-class ProductDataBuilder
+class CategoryDataBuilder
 {
     /**
      * @var AttributeTransformerInterface[]
@@ -20,30 +19,30 @@ class ProductDataBuilder
     /**
      * @var ProductEnricherChain
      */
-    private $productEnricherChain;
+    private $categoryEnricherChain;
     /**
      * @var HydratorInterface
      */
     private $hydrator;
 
     public function __construct(
-        ProductEnricherChain $productEnricherChain,
+        ProductEnricherChain $categoryEnricherChain,
         AttributeTransformerInterface $defaultAttributeTransformer,
         HydratorInterface $hydrator,
         array $attributeTransformers = []
     ) {
         $this->attributeTransformers = $attributeTransformers;
         $this->defaultAttributeTransformer = $defaultAttributeTransformer;
-        $this->productEnricherChain = $productEnricherChain;
+        $this->productEnricherChain = $categoryEnricherChain;
         $this->hydrator = $hydrator;
     }
 
-    public function buildData(ProductInterface $product): array
+    public function buildData(CategoryInterface $category): array
     {
-        $productData = $this->productEnricherChain->process($this->hydrator->extract($product));
-        return array_reduce(array_keys($productData), function ($processedData, $key) use ($productData) {
+        $categoryData = $this->productEnricherChain->process($this->hydrator->extract($category));
+        return array_reduce(array_keys($categoryData), function ($processedData, $key) use ($categoryData) {
             $transformer = $this->attributeTransformers[$key] ?? $this->defaultAttributeTransformer;
-            return $transformer->process($productData, $processedData, $key);
+            return $transformer->process($categoryData, $processedData, $key);
         }, []);
     }
 }

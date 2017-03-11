@@ -1,10 +1,10 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer;
+namespace LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer;
 
 use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
 
-class MediaGalleryTransformer implements AttributeTransformerInterface
+class ProductMediaGalleryTransformer implements AttributeTransformerInterface
 {
     const IMAGES = 'images';
 

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\ProductExport\ProductAttributeTransformer;
+namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\AttributeTransformer;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\IgnoreAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\IgnoreAttributeTransformer;
 
 class IgnoreAttributeTransformerTest extends AbstractTransformerTest
 {

@@ -2,8 +2,8 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\AttributeTransformerInterface;
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\DefaultAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\AttributeTransformerInterface;
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\DefaultAttributeTransformer;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\ProductBuilder;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\XmlString;
 use Magento\Catalog\Api\Data\ProductInterface;

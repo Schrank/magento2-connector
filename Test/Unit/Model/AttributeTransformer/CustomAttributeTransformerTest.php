@@ -1,8 +1,8 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\ProductExport\ProductAttributeTransformer;
+namespace LizardsAndPumpkins\Magento2Connector\Test\Unit\Model\AttributeTransformer;
 
-use LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\CustomAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\CustomAttributeTransformer;
 
 class CustomAttributeTransformerTest extends AbstractTransformerTest
 {
