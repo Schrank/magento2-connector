@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer;
+namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer;
+
+use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\AttributeTransformerInterface;
 
 class ProductLinksTransformer implements AttributeTransformerInterface
 {
