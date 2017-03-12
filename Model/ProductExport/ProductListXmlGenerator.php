@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
 
+use LizardsAndPumpkins\Magento2Connector\Model\ExportContext;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\CatalogMerge;
 use Magento\Catalog\Api\Data\ProductInterface;
 

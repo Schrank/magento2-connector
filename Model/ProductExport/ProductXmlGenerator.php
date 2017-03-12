@@ -4,6 +4,7 @@ namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
 
 use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\AttributeTransformerInterface;
 use LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\DefaultAttributeTransformer;
+use LizardsAndPumpkins\Magento2Connector\Model\ExportContext;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\ProductBuilder;
 use LizardsAndPumpkins\MagentoConnector\XmlBuilder\XmlString;
 use Magento\Catalog\Api\Data\ProductInterface;
