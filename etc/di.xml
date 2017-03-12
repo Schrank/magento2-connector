@@ -47,6 +47,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="lizardsandpumpkins:products:export" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Command\ExportProductsCommand</item>
+                <item name="lizardsandpumpkins:categories:export" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Command\ExportCategoriesCommand</item>
             </argument>
         </arguments>
     </type>
@@ -55,6 +56,14 @@
             <argument name="productListXmlExporters" xsi:type="array">
                 <item name="file" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlToFileExporter</item>
                 <item name="stdout" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductListXmlExporter\ProductListXmlToStdOutExporter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\CategoryListXmlExporter\CategoryListXmlExporterList">
+        <arguments>
+            <argument name="categoryListXmlExporters" xsi:type="array">
+                <item name="file" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\CategoryListXmlExporter\CategoryListXmlToFileExporter</item>
+                <item name="stdout" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\CategoryListXmlExporter\CategoryListXmlToStdOutExporter</item>
             </argument>
         </arguments>
     </type>
