@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
 
+use LizardsAndPumpkins\Magento2Connector\Model\AbstractCatalogEntityCollector;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\Product\Visibility;

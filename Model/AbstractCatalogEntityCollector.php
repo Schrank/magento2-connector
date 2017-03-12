@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace LizardsAndPumpkins\Magento2Connector\Model\ProductExport;
+namespace LizardsAndPumpkins\Magento2Connector\Model;
 
 use Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection;
 use Magento\Store\Api\Data\StoreInterface;
