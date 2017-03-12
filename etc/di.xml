@@ -17,16 +17,32 @@
                 <item name="custom_attributes" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\CustomAttributeTransformer</item>
                 <item name="product_links" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductAttributeTransformer\ProductLinksTransformer</item>
             </argument>
+            <argument name="entityEnricherChain" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\VirtualProductEnricherChain</argument>
         </arguments>
     </type>
-    <type name="LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherChain">
+    <type name="LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\CategoryDataBuilder">
+        <arguments>
+            <argument name="defaultAttributeTransformer" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\DefaultAttributeTransformer</argument>
+            <argument name="attributeTransformers" xsi:type="array">
+                <item name="created_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\IgnoreAttributeTransformer</item>
+                <item name="updated_at" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\AttributeTransformer\IgnoreAttributeTransformer</item>
+                </argument>
+            <argument name="entityEnricherChain" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\VirtualCategoryEnricherChain</argument>
+        </arguments>
+    </type>
+    <virtualType name="LizardsAndPumpkins\Magento2Connector\Model\ProductExport\VirtualProductEnricherChain" type="LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherChain">
         <arguments>
             <argument name="entityEnrichers" xsi:type="array">
                 <item name="media_gallery" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\MediaGalleryEnricher</item>
                 <item name="tax_class" xsi:type="object">LizardsAndPumpkins\Magento2Connector\Model\ProductExport\ProductEnricher\TaxClassEnricher</item>
             </argument>
         </arguments>
-    </type>
+    </virtualType>
+    <virtualType name="LizardsAndPumpkins\Magento2Connector\Model\CategoryExport\VirtualCategoryEnricherChain" type="LizardsAndPumpkins\Magento2Connector\Model\EntityEnricher\EntityEnricherChain">
+        <arguments>
+            <argument name="entityEnrichers" xsi:type="array"/>
+        </arguments>
+    </virtualType>
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
