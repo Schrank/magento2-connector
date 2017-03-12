@@ -26,14 +26,14 @@ abstract class AbstractEntityDataBuilder
     protected $hydrator;
 
     public function __construct(
-        EntityEnricherChain $categoryEnricherChain,
+        EntityEnricherChain $entityEnricherChain,
         AttributeTransformerInterface $defaultAttributeTransformer,
         HydratorInterface $hydrator,
         array $attributeTransformers = []
     ) {
         $this->attributeTransformers = $attributeTransformers;
         $this->defaultAttributeTransformer = $defaultAttributeTransformer;
-        $this->enricherChain = $categoryEnricherChain;
+        $this->enricherChain = $entityEnricherChain;
         $this->hydrator = $hydrator;
     }
 
